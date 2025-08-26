@@ -1,3 +1,4 @@
+import os
 from time import sleep
 
 from llama_cpp import Llama
@@ -12,11 +13,14 @@ class LLM:
         if api_key:
             self.llm = OpenAI(api_key=api_key, base_url=base_url)
         else:
+            # 使用环境变量 MODEL_CTX 来配置上下文长度（默认与模型训练长度一致）
+            n_ctx = int(os.environ.get("MODEL_CTX", "32768"))
+            n_threads = int(os.environ.get("LLM_THREADS", "4"))
             self.llm = Llama.from_pretrained(
                 repo_id="Qwen/Qwen2.5-3B-Instruct-GGUF",
                 filename="qwen2.5-3b-instruct-q4_k_m.gguf",
-                n_ctx=5_000,
-                n_threads=4,
+                n_ctx=n_ctx,
+                n_threads=n_threads,
                 verbose=False,
             )
         self.model = model
