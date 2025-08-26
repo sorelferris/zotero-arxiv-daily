@@ -17,8 +17,9 @@ class LLM:
             n_ctx = int(os.environ.get("MODEL_CTX", "32768"))
             n_threads = int(os.environ.get("LLM_THREADS", "4"))
             self.llm = Llama.from_pretrained(
-                repo_id="Qwen/Qwen2.5-3B-Instruct-GGUF",
-                filename="qwen2.5-3b-instruct-q4_k_m.gguf",
+                # repo_id="Qwen/Qwen2.5-3B-Instruct-GGUF",
+                repo_id="Qwen/Qwen3-4B-Thinking-2507",
+                filename="qwen3-4b-thinking-2507.gguf",
                 n_ctx=n_ctx,
                 n_threads=n_threads,
                 verbose=False,
