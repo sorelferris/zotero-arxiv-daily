@@ -78,7 +78,7 @@ def get_arxiv_paper(query: str, debug: bool = False) -> list[ArxivPaper]:
         papers = []
         for i in client.results(search):
             papers.append(ArxivPaper(i))
-            if len(papers) == 5:
+            if len(papers) == 3:
                 break
 
     return papers
